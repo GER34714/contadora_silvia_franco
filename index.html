@@ -1,0 +1,1109 @@
+<!-- =========================
+     PARTE 1/2 (HEAD + CSS)
+========================= -->
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Silvia Franco | Contadora</title>
+  <meta name="description" content="Soluciones contables claras y precisas: impuestos, balances, consultorías, levantamiento de embargos y jubilaciones. Consultas por Instagram." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="robots" content="index,follow" />
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg2:#0a1635;
+      --card:rgba(255,255,255,.08);
+      --card2:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.14);
+      --txt:#eef2ff;
+      --muted:rgba(238,242,255,.72);
+      --muted2:rgba(238,242,255,.55);
+      --accent:#7dd3fc;      /* celeste */
+      --accent2:#a78bfa;     /* violeta */
+      --good:#34d399;
+      --warn:#fbbf24;
+      --shadow: 0 18px 48px rgba(0,0,0,.35);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1120px;
+      --pad: clamp(18px, 3.2vw, 34px);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--txt);
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(125,211,252,.22), transparent 55%),
+        radial-gradient(900px 700px at 105% 10%, rgba(167,139,250,.20), transparent 55%),
+        radial-gradient(900px 700px at 40% 110%, rgba(52,211,153,.12), transparent 50%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(var(--max), calc(100% - 2*var(--pad))); margin:0 auto; }
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(11,16,32,.72);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 12px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width:42px; height:42px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(125,211,252,.55), transparent 60%),
+        radial-gradient(18px 18px at 70% 70%, rgba(167,139,250,.55), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.30);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: conic-gradient(from 210deg, rgba(125,211,252,.35), rgba(167,139,250,.35), rgba(52,211,153,.20), rgba(125,211,252,.35));
+      opacity:.35;
+      filter: blur(10px);
+    }
+    .logo span{
+      position:relative;
+      font-weight: 900;
+      letter-spacing:.6px;
+      font-size:14px;
+      opacity:.95;
+    }
+    .brand-text{
+      display:flex; flex-direction:column; line-height:1.05;
+    }
+    .brand-text strong{ font-size:14.5px; letter-spacing:.2px; }
+    .brand-text small{ font-size:12px; color:var(--muted2); margin-top:4px; }
+
+    .nav{
+      display:flex; gap:14px; align-items:center;
+    }
+    .nav a{
+      font-size:13px;
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius: 12px;
+      transition: .2s ease;
+    }
+    .nav a:hover{ background: rgba(255,255,255,.06); color:var(--txt); }
+
+    .actions{ display:flex; gap:10px; align-items:center; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      font-weight: 700;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .12s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.22);
+      transform: translateY(-1px);
+    }
+    .btn.primary{
+      border: 1px solid rgba(125,211,252,.40);
+      background: linear-gradient(135deg, rgba(125,211,252,.22), rgba(167,139,250,.14));
+      box-shadow: 0 14px 38px rgba(0,0,0,.32);
+    }
+    .btn.primary:hover{
+      border-color: rgba(125,211,252,.60);
+      background: linear-gradient(135deg, rgba(125,211,252,.28), rgba(167,139,250,.18));
+    }
+    .btn.ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.14);
+      color: var(--muted);
+    }
+    .btn.ghost:hover{ color:var(--txt); background: rgba(255,255,255,.06); }
+
+    .icon{
+      width:16px; height:16px; display:inline-block;
+    }
+
+    /* Hero */
+    .hero{
+      padding: clamp(26px, 4.2vw, 52px) 0 26px;
+      position:relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: clamp(16px, 2.8vw, 28px);
+      align-items: stretch;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size:12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      width: fit-content;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(125,211,252,.8));
+      box-shadow: 0 0 0 6px rgba(125,211,252,.10);
+    }
+
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 3.3vw, 44px);
+      line-height:1.08;
+      letter-spacing: -0.6px;
+    }
+    .hero-sub{
+      color: var(--muted);
+      font-size: clamp(14.8px, 1.25vw, 16.8px);
+      line-height:1.6;
+      margin: 0 0 18px;
+      max-width: 56ch;
+    }
+
+    .hero-cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 14px 0 18px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+    .chip{
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 12.5px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      display:inline-flex; align-items:center; gap:8px;
+      transition: .15s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip:hover{
+      background: rgba(255,255,255,.08);
+      color: var(--txt);
+      border-color: rgba(255,255,255,.18);
+    }
+    .chip.active{
+      background: linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,139,250,.12));
+      border-color: rgba(125,211,252,.35);
+      color: var(--txt);
+    }
+
+    .panel{
+      border-radius: var(--radius);
+      background:
+        radial-gradient(800px 420px at 20% 10%, rgba(125,211,252,.14), transparent 60%),
+        radial-gradient(650px 420px at 90% 0%, rgba(167,139,250,.12), transparent 60%),
+        rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      min-height: 320px;
+    }
+    .panel:before{
+      content:"";
+      position:absolute;
+      inset:-60px;
+      background: conic-gradient(from 180deg, rgba(125,211,252,.18), rgba(167,139,250,.16), rgba(52,211,153,.10), rgba(125,211,252,.18));
+      opacity:.35;
+      filter: blur(18px);
+      pointer-events:none;
+    }
+    .panel-inner{
+      position:relative;
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      height:100%;
+    }
+
+    .panel-head{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.20);
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .badge b{ color:var(--txt); font-weight: 800; }
+
+    .panel-card{
+      border-radius: 18px;
+      padding: 14px 14px;
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .panel-ic{
+      width:42px; height:42px;
+      border-radius: 16px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      flex:0 0 auto;
+    }
+    .panel-card h3{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+    }
+    .panel-card p{
+      margin:6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.55;
+    }
+
+    /* Sections */
+    .section{
+      padding: 28px 0;
+    }
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .section h2{
+      margin:0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing: -0.3px;
+    }
+    .section p.lead{
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height:1.6;
+      max-width: 72ch;
+    }
+    .link{
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .link:hover{ color:var(--txt); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .card{
+      grid-column: span 4;
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 14px 14px;
+      box-shadow: 0 14px 32px rgba(0,0,0,.20);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-40px;
+      background: radial-gradient(280px 120px at 20% 0%, rgba(125,211,252,.14), transparent 60%),
+                  radial-gradient(280px 120px at 100% 10%, rgba(167,139,250,.12), transparent 60%);
+      opacity:.8;
+      pointer-events:none;
+    }
+    .card > *{ position:relative; }
+
+    .card .row{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom: 8px;
+    }
+    .pill{
+      font-size: 11.5px;
+      color: var(--muted);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .card h3{
+      margin: 6px 0 6px;
+      font-size: 15px;
+      letter-spacing:.2px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13.2px;
+      line-height: 1.55;
+    }
+
+    /* Process */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(12,1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .step{
+      grid-column: span 4;
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 14px 14px;
+    }
+    .step .num{
+      width:34px;height:34px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(125,211,252,.12);
+      border:1px solid rgba(125,211,252,.22);
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .step h3{ margin:0 0 6px; font-size: 14.6px; }
+    .step p{ margin:0; color:var(--muted); font-size: 13.2px; line-height:1.55; }
+
+    /* FAQ */
+    .faq{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: repeat(12,1fr);
+      gap: 12px;
+    }
+    details{
+      grid-column: span 6;
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 12px 12px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight: 800;
+      font-size: 13.6px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13.2px;
+      line-height:1.6;
+    }
+    .chev{
+      width: 10px; height: 10px;
+      border-right:2px solid rgba(238,242,255,.75);
+      border-bottom:2px solid rgba(238,242,255,.75);
+      transform: rotate(45deg);
+      transition: transform .18s ease;
+      flex: 0 0 auto;
+      opacity:.85;
+    }
+    details[open] .chev{ transform: rotate(225deg); }
+
+    /* Contact */
+    .contact{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .contact:before{
+      content:"";
+      position:absolute; inset:-60px;
+      background:
+        radial-gradient(520px 220px at 10% 0%, rgba(125,211,252,.16), transparent 60%),
+        radial-gradient(520px 220px at 95% 10%, rgba(167,139,250,.12), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .contact-inner{
+      position:relative;
+      padding: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .contact-copy h2{ margin:0; }
+    .contact-copy p{ margin: 8px 0 0; color:var(--muted); line-height:1.6; }
+
+    .form{
+      border-radius: 18px;
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.12);
+      padding: 14px;
+    }
+    .fields{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .field{
+      display:flex; flex-direction:column;
+      gap: 6px;
+    }
+    label{
+      font-size: 12.2px;
+      color: var(--muted2);
+      font-weight: 700;
+    }
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      outline:none;
+      font-size: 13.2px;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(125,211,252,.42);
+      background: rgba(255,255,255,.08);
+    }
+    textarea{ min-height: 110px; resize: vertical; grid-column: 1/-1; }
+
+    .note{
+      margin-top: 10px;
+      color: var(--muted2);
+      font-size: 12.3px;
+      line-height: 1.55;
+    }
+    .form-actions{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    /* Footer */
+    footer{
+      padding: 22px 0 30px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.10);
+    }
+    .footer-inner{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      align-items:center;
+      justify-content:space-between;
+      color: var(--muted2);
+      font-size: 12.5px;
+    }
+    .footer-inner a{
+      color: var(--txt);
+      opacity:.9;
+      font-weight: 800;
+    }
+    .footer-inner a:hover{ opacity:1; text-decoration: underline; }
+
+    /* Floating IG button (reemplaza WhatsApp en este ejemplo) */
+    .float-ig{
+      position:fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 60;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,139,250,.12));
+      box-shadow: 0 18px 46px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      font-weight: 900;
+      font-size: 13px;
+      transition: transform .12s ease, background .2s ease, border-color .2s ease;
+      max-width: calc(100vw - 32px);
+    }
+    .float-ig:hover{
+      transform: translateY(-1px);
+      border-color: rgba(125,211,252,.55);
+      background: linear-gradient(135deg, rgba(125,211,252,.24), rgba(167,139,250,.16));
+    }
+    .float-ig .bubble{
+      width:34px; height:34px;
+      border-radius: 999px;
+      display:grid; place-items:center;
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.14);
+      flex:0 0 auto;
+    }
+    .float-ig .small{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .panel{ min-height: auto; }
+      .card{ grid-column: span 6; }
+      .step{ grid-column: span 12; }
+      details{ grid-column: span 12; }
+      .contact-inner{ grid-template-columns: 1fr; }
+      .fields{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+    }
+    @media (max-width: 560px){
+      .brand{ min-width: auto; }
+      .actions .btn.ghost{ display:none; }
+      .card{ grid-column: span 12; }
+      .float-ig span.label{ display:none; }
+    }
+  </style>
+  </head><!-- =========================
+     PARTE 2/2 (BODY + JS)
+========================= -->
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <div class="logo" aria-hidden="true"><span>SF</span></div>
+        <div class="brand-text">
+          <strong>Silvia Franco</strong>
+          <small>Contadora · Soluciones claras</small>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Cómo trabajo</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#consulta">Consulta</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn ghost" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+          </svg>
+          Instagram
+        </a>
+        <a class="btn primary" href="#consulta">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 6.5a2.5 2.5 0 0 0-2.5-2.5h-13A2.5 2.5 0 0 0 3 6.5v11A2.5 2.5 0 0 0 5.5 20h13A2.5 2.5 0 0 0 21 17.5v-11Z" stroke="currentColor" stroke-width="2"/>
+            <path d="m5 7 7 5 7-5" stroke="currentColor" stroke-width="2" opacity=".9"/>
+          </svg>
+          Enviar consulta
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="inicio" class="hero">
+    <div class="container hero-grid">
+      <section class="hero-copy" aria-label="Presentación">
+        <div class="kicker"><span class="dot" aria-hidden="true"></span> Respuestas claras · Trámites al día · Sin vueltas</div>
+
+        <h1>Soluciones contables claras y precisas para tu negocio y tu situación personal</h1>
+        <p class="hero-sub">
+          Impuestos, balances, consultorías, jubilaciones y levantamiento de embargos.
+          Te indico qué conviene hacer, qué documentación necesitás y cómo avanzar paso a paso.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn primary" href="#consulta">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 6.5a2.5 2.5 0 0 0-2.5-2.5h-13A2.5 2.5 0 0 0 3 6.5v11A2.5 2.5 0 0 0 5.5 20h13A2.5 2.5 0 0 0 21 17.5v-11Z" stroke="currentColor" stroke-width="2"/>
+              <path d="m5 7 7 5 7-5" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            </svg>
+            Quiero una evaluación
+          </a>
+
+          <a class="btn" href="#servicios">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v18" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              <path d="M3 12h18" stroke="currentColor" stroke-width="2" opacity=".9"/>
+            </svg>
+            Ver servicios
+          </a>
+
+          <a class="btn ghost" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">
+            Enviar DM por Instagram
+          </a>
+        </div>
+
+        <div class="chips" aria-label="Filtrar por tipo de consulta">
+          <div class="chip active" data-chip="monotributo">
+            <span aria-hidden="true">•</span> Monotributo / Autónomos
+          </div>
+          <div class="chip" data-chip="pymes">
+            <span aria-hidden="true">•</span> PyMEs / Comercios
+          </div>
+          <div class="chip" data-chip="jubilaciones">
+            <span aria-hidden="true">•</span> Jubilaciones / Embargos
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="Panel de confianza y enfoque">
+        <div class="panel-inner">
+          <div class="panel-head">
+            <div class="badge"><b>Enfoque</b> orden + seguimiento</div>
+            <div class="badge"><b>Canal</b> Instagram (ejemplo)</div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-ic" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16M4 12h10M4 18h16" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Diagnóstico claro</h3>
+              <p>Te digo qué corresponde hacer y qué documentación mínima hace falta para avanzar.</p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-ic" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2 3 6v6c0 5 3.5 9.5 9 10 5.5-.5 9-5 9-10V6l-9-4Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Confidencialidad y respaldo</h3>
+              <p>Trabajo con información sensible con criterio y comunicación ordenada.</p>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-ic" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M8 7h8M8 11h8M8 15h5" stroke="currentColor" stroke-width="2" opacity=".9"/>
+                <path d="M6 3h10l2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" opacity=".9"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Entregables por escrito</h3>
+              <p>Plan de acción, plazos y costos según complejidad y urgencia del caso.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Servicios -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Servicios</h2>
+          <p class="lead">Elegí tu tema principal y avanzamos con un plan concreto.</p>
+        </div>
+        <a class="link" href="#consulta">Hacer consulta</a>
+      </div>
+
+      <div class="grid">
+        <article class="card" data-service="monotributo pymes">
+          <div class="row">
+            <span class="pill">Impuestos</span>
+            <span class="pill">Regularización</span>
+          </div>
+          <h3>Impuestos (presentaciones y orden)</h3>
+          <p>Revisión, presentación y corrección de inconsistencias para evitar recargos y sustos.</p>
+        </article>
+
+        <article class="card" data-service="pymes">
+          <div class="row">
+            <span class="pill">Balances</span>
+            <span class="pill">Decisiones</span>
+          </div>
+          <h3>Balances y estados contables</h3>
+          <p>Orden documental y contable para gestionar mejor y respaldar ante terceros.</p>
+        </article>
+
+        <article class="card" data-service="monotributo pymes jubilaciones">
+          <div class="row">
+            <span class="pill">Consultoría</span>
+            <span class="pill">Estrategia</span>
+          </div>
+          <h3>Consultorías contables</h3>
+          <p>Te explico qué conviene, qué no, y te dejo pasos claros para ejecutar sin vueltas.</p>
+        </article>
+
+        <article class="card" data-service="jubilaciones">
+          <div class="row">
+            <span class="pill">Embargos</span>
+            <span class="pill">Seguimiento</span>
+          </div>
+          <h3>Levantamiento de embargos</h3>
+          <p>Gestión, armado de documentación y seguimiento hasta cerrar el trámite.</p>
+        </article>
+
+        <article class="card" data-service="jubilaciones">
+          <div class="row">
+            <span class="pill">Jubilaciones</span>
+            <span class="pill">Documentación</span>
+          </div>
+          <h3>Jubilaciones</h3>
+          <p>Orientación y armado del caso: requisitos, documentación y pasos para avanzar.</p>
+        </article>
+
+        <article class="card" data-service="monotributo pymes">
+          <div class="row">
+            <span class="pill">Multas</span>
+            <span class="pill">Intereses</span>
+          </div>
+          <h3>Multas e intereses</h3>
+          <p>Diagnóstico del origen y plan para reducir impacto, ordenar y regularizar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section id="proceso" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Cómo trabajo</h2>
+          <p class="lead">Un método simple: claridad desde el inicio, ejecución y seguimiento.</p>
+        </div>
+        <a class="link" href="#faq">Ver preguntas</a>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Revisión inicial</h3>
+          <p>Te pido datos mínimos del caso para entender situación y urgencia.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Plan de acción</h3>
+          <p>Te indico pasos, documentación, plazos y costos según complejidad.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Ejecución + seguimiento</h3>
+          <p>Avanzamos con orden y te aviso cada hito para que estés tranquilo/a.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Preguntas frecuentes</h2>
+          <p class="lead">Respuestas cortas para evitar idas y vueltas y filtrar rápido.</p>
+        </div>
+        <a class="link" href="#consulta">Consultar ahora</a>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>¿Qué necesitás para empezar? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Nombre, tipo de caso (impuestos / balance / jubilación / embargo) y una breve descripción. Si hay documentación, la vemos luego.</p>
+        </details>
+
+        <details>
+          <summary>¿Atendés a distancia? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Sí. En este ejemplo, el canal principal es Instagram para coordinar y ordenar la consulta.</p>
+        </details>
+
+        <details>
+          <summary>¿En cuánto tiempo respondés? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Depende de la complejidad y la urgencia. Primero reviso tu caso y te confirmo el mejor camino con tiempos estimados.</p>
+        </details>
+
+        <details>
+          <summary>¿Cómo se define el costo? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Según complejidad, urgencia y alcance. La idea es que sepas claramente qué incluye y qué no.</p>
+        </details>
+
+        <details>
+          <summary>¿Hacés urgencias? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Si el caso lo requiere, se prioriza. Se coordina por mensaje y se define el plan de acción.</p>
+        </details>
+
+        <details>
+          <summary>¿Qué servicios son más comunes? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Regularización de impuestos, orden para balances, consultorías puntuales, y acompañamiento en jubilaciones/embargos.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consulta -->
+  <section id="consulta" class="section">
+    <div class="container contact">
+      <div class="contact-inner">
+        <div class="contact-copy">
+          <h2>Contame tu caso</h2>
+          <p>
+            En este ejemplo no usamos WhatsApp. La consulta se deriva a Instagram para coordinar.
+            Si querés, completá el formulario y te preparo el mensaje listo para enviar.
+          </p>
+          <p class="note">
+            Nota: no se publican precios en la landing. El costo se define según complejidad y urgencia, con pasos claros.
+          </p>
+        </div>
+
+        <form class="form" id="leadForm">
+          <div class="fields">
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required />
+            </div>
+
+            <div class="field">
+              <label for="perfil">Tipo de caso</label>
+              <select id="perfil" name="perfil" required>
+                <option value="" selected disabled>Elegí una opción</option>
+                <option value="Monotributo / Autónomos">Monotributo / Autónomos</option>
+                <option value="PyMEs / Comercios">PyMEs / Comercios</option>
+                <option value="Jubilaciones / Embargos">Jubilaciones / Embargos</option>
+              </select>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="motivo">Motivo principal</label>
+              <select id="motivo" name="motivo" required>
+                <option value="" selected disabled>Seleccioná el motivo</option>
+                <option>Impuestos (presentaciones / regularización)</option>
+                <option>Balances / Estados contables</option>
+                <option>Consultoría (qué conviene hacer)</option>
+                <option>Levantamiento de embargos</option>
+                <option>Jubilaciones</option>
+                <option>Multas e intereses</option>
+              </select>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="mensaje">Descripción breve</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Contame en pocas líneas tu situación y si es urgente." required></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn primary" type="submit">
+              Preparar mensaje para Instagram
+            </button>
+
+            <a class="btn" id="openIg" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">
+              Abrir Instagram
+            </a>
+
+            <button class="btn ghost" type="button" id="copyMsg">Copiar texto</button>
+          </div>
+
+          <div class="note" id="resultNote" aria-live="polite" style="display:none"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>Instagram: <a href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">@contadora_silviafranco</a></div>
+      <div>
+        <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Creado y diseñado por Ciborg 347</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating IG button -->
+  <a class="float-ig" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener" aria-label="Abrir Instagram para enviar consulta">
+    <span class="bubble" aria-hidden="true">
+      <svg class="icon" viewBox="0 0 24 24" fill="none">
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2" opacity=".92"/>
+        <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2" opacity=".92"/>
+        <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".92"/>
+      </svg>
+    </span>
+    <span class="label">Enviar consulta</span>
+    <span class="small">por Instagram</span>
+  </a>
+
+  <script>
+    (function(){
+      const chips = Array.from(document.querySelectorAll('.chip'));
+      const cards = Array.from(document.querySelectorAll('.card[data-service]'));
+      const form = document.getElementById('leadForm');
+      const resultNote = document.getElementById('resultNote');
+      const copyBtn = document.getElementById('copyMsg');
+
+      let active = 'monotributo';
+
+      function applyFilter(key){
+        active = key;
+
+        chips.forEach(c => c.classList.toggle('active', c.dataset.chip === key));
+
+        // Map chip -> service tags
+        const map = {
+          monotributo: 'monotributo',
+          pymes: 'pymes',
+          jubilaciones: 'jubilaciones'
+        };
+
+        const tag = map[key] || '';
+        cards.forEach(card => {
+          const tags = (card.dataset.service || '').split(/\s+/).filter(Boolean);
+          const show = tag ? tags.includes(tag) : true;
+          card.style.opacity = show ? '1' : '.35';
+          card.style.filter = show ? 'none' : 'grayscale(.2)';
+          card.style.transform = show ? 'none' : 'scale(.995)';
+        });
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => applyFilter(chip.dataset.chip));
+      });
+
+      applyFilter(active);
+
+      function buildMessage(data){
+        return [
+          "Hola Silvia, ¿cómo estás?",
+          "",
+          "Te escribo por una consulta contable.",
+          `• Nombre: ${data.nombre}`,
+          `• Tipo de caso: ${data.perfil}`,
+          `• Motivo: ${data.motivo}`,
+          "",
+          "Descripción:",
+          data.mensaje,
+          "",
+          "¿Me indicás cómo avanzar y qué documentación mínima necesitás?"
+        ].join("\\n");
+      }
+
+      async function copyText(text){
+        try{
+          await navigator.clipboard.writeText(text);
+          return true;
+        }catch(e){
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          return ok;
+        }
+      }
+
+      let lastMsg = "";
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const data = {
+          nombre: (document.getElementById('nombre').value || "").trim(),
+          perfil: document.getElementById('perfil').value,
+          motivo: document.getElementById('motivo').value,
+          mensaje: (document.getElementById('mensaje').value || "").trim(),
+        };
+
+        lastMsg = buildMessage(data);
+
+        const ok = await copyText(lastMsg);
+        resultNote.style.display = "block";
+        resultNote.textContent = ok
+          ? "Listo: copié el mensaje. Tocá “Abrir Instagram” y pegalo en el DM."
+          : "Listo: generé el mensaje. Si tu navegador no permite copiar automático, usá el botón “Copiar texto”.";
+      });
+
+      copyBtn.addEventListener('click', async () => {
+        if(!lastMsg){
+          resultNote.style.display = "block";
+          resultNote.textContent = "Primero completá el formulario y tocá “Preparar mensaje para Instagram”.";
+          return;
+        }
+        const ok = await copyText(lastMsg);
+        resultNote.style.display = "block";
+        resultNote.textContent = ok ? "Copiado." : "No pude copiar automáticamente. Copialo manualmente desde el formulario.";
+      });
+
+      // Smooth anchors
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const href = a.getAttribute('href');
+          if(!href || href === '#') return;
+          const el = document.querySelector(href);
+          if(!el) return;
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+    })();
+  </script>
+
+</body>
+  </html>
