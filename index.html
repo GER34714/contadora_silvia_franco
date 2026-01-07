@@ -1,318 +1,901 @@
+<!-- =========================
+     PARTE 1/2 (HEAD + CSS)
+========================= -->
 <!doctype html>
 <html lang="es-AR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Silvia Franco · Contadora</title>
+  <meta name="description" content="Servicios contables claros y profesionales. Impuestos, balances, consultoría, jubilaciones y embargos. Consultas por Instagram." />
+  <meta name="theme-color" content="#fbf7fb" />
+  <meta name="robots" content="index,follow" />
 
-<title>Silvia Franco · Contadora Pública</title>
-<meta name="description" content="Servicios contables profesionales. Impuestos, balances, consultoría, jubilaciones y embargos. Atención personalizada.">
-<meta name="theme-color" content="#f4f4f4">
+  <style>
+    :root{
+      /* Paleta pro-femenina (inspirada en institucional claro) */
+      --bg:#fbf7fb;
+      --paper:#ffffff;
+      --ink:#1f2430;
+      --muted:#5b6373;
+      --line:#eadff0;
 
-<style>
-:root{
-  --bg:#f4f4f4;
-  --paper:#ffffff;
-  --ink:#1f2937;
-  --muted:#6b7280;
-  --line:#e5e7eb;
-  --accent:#1e40af;
-  --accent-soft:#dbeafe;
-  --radius:14px;
-  --max:1100px;
-}
+      --teal:#1aa6a8;
+      --teal2:#68d6d0;
+      --coral:#ff6b9a;
+      --lilac:#8b7bff;
 
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background:var(--bg);
-  color:var(--ink);
-  line-height:1.55;
-}
+      --shadow: 0 18px 55px rgba(25, 18, 40, .10);
+      --shadow2: 0 12px 28px rgba(25, 18, 40, .08);
+      --r: 18px;
+      --r2: 14px;
 
-a{color:inherit;text-decoration:none}
+      --max: 1120px;
+      --pad: clamp(18px, 3.2vw, 34px);
+    }
 
-.container{
-  width:min(var(--max),92%);
-  margin:auto;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 520px at 10% -10%, rgba(26,166,168,.18), transparent 58%),
+        radial-gradient(900px 520px at 92% 0%, rgba(255,107,154,.15), transparent 55%),
+        radial-gradient(980px 540px at 35% 110%, rgba(139,123,255,.12), transparent 55%),
+        linear-gradient(180deg, var(--bg), #ffffff 65%, var(--bg));
+      overflow-x:hidden;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(var(--max), calc(100% - 2*var(--pad))); margin:0 auto; }
 
-/* Header */
-header{
-  background:var(--paper);
-  border-bottom:1px solid var(--line);
-}
-.header-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 0;
-}
-.brand strong{
-  font-size:18px;
-  letter-spacing:.2px;
-}
-.brand span{
-  display:block;
-  font-size:13px;
-  color:var(--muted);
-}
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(234,223,240,.9);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
+    .mark{
+      width:42px; height:42px; border-radius: 14px;
+      background: conic-gradient(from 210deg, var(--teal), var(--teal2), var(--lilac), var(--coral), var(--teal));
+      box-shadow: 0 16px 36px rgba(26,166,168,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .mark:after{
+      content:"SF";
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      font-weight: 950;
+      color:#fff;
+      font-size: 13px;
+      letter-spacing:.6px;
+      text-shadow: 0 10px 18px rgba(0,0,0,.20);
+    }
+    .brand-text strong{ display:block; font-size: 15.5px; letter-spacing:.2px; }
+    .brand-text small{ display:block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
 
-.header-actions a{
-  padding:10px 16px;
-  border:1px solid var(--accent);
-  border-radius:999px;
-  font-size:14px;
-  font-weight:600;
-  color:var(--accent);
-}
+    .nav{
+      display:flex; gap: 10px; align-items:center;
+    }
+    .nav a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 10px 10px;
+      border-radius: 12px;
+      transition: .18s ease;
+    }
+    .nav a:hover{
+      background: rgba(31,36,48,.04);
+      color: var(--ink);
+    }
 
-/* Intro */
-.intro{
-  padding:60px 0 40px;
-}
-.intro-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:40px;
-}
-.intro h1{
-  font-size:34px;
-  line-height:1.15;
-  margin:0 0 16px;
-}
-.intro p{
-  color:var(--muted);
-  font-size:16px;
-  max-width:55ch;
-}
-.intro-note{
-  background:var(--accent-soft);
-  padding:20px;
-  border-radius:var(--radius);
-  font-size:14px;
-}
+    .actions{ display:flex; gap:10px; align-items:center; }
 
-/* Section base */
-section{
-  padding:50px 0;
-}
-.section-title{
-  font-size:26px;
-  margin-bottom:30px;
-}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(234,223,240,.95);
+      background: rgba(255,255,255,.92);
+      box-shadow: var(--shadow2);
+      font-weight: 900;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .12s ease, filter .2s ease, border-color .2s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(208,191,220,.9); }
+    .btn.primary{
+      border-color: transparent;
+      color:#fff;
+      background: linear-gradient(135deg, var(--teal), var(--teal2) 45%, var(--lilac));
+      box-shadow: 0 18px 48px rgba(26,166,168,.18);
+    }
+    .btn.primary:hover{ filter: brightness(1.02); }
+    .btn.ghost{
+      background: transparent;
+      box-shadow:none;
+      border-color: rgba(208,191,220,.75);
+      color: var(--muted);
+    }
+    .btn.ghost:hover{ background: rgba(31,36,48,.04); color: var(--ink); }
 
-/* Services list (editorial) */
-.services{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
-}
-.service{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:24px;
-}
-.service h3{
-  margin:0 0 8px;
-  font-size:18px;
-}
-.service p{
-  margin:0;
-  color:var(--muted);
-  font-size:14px;
-}
+    .icon{ width:16px; height:16px; display:inline-block; }
 
-/* Timeline */
-.timeline{
-  border-left:3px solid var(--accent);
-  padding-left:30px;
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-}
-.step{
-  position:relative;
-}
-.step::before{
-  content:"";
-  position:absolute;
-  left:-41px;
-  top:0;
-  width:16px;
-  height:16px;
-  background:var(--accent);
-  border-radius:50%;
-}
-.step h4{
-  margin:0 0 6px;
-  font-size:16px;
-}
-.step p{
-  margin:0;
-  font-size:14px;
-  color:var(--muted);
-}
+    /* Hero */
+    .hero{ padding: 38px 0 22px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
 
-/* Contact */
-.contact-box{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:30px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-}
-.contact-box p{
-  color:var(--muted);
-}
-.contact-box a{
-  display:inline-block;
-  margin-top:12px;
-  padding:12px 18px;
-  border-radius:999px;
-  border:1px solid var(--accent);
-  color:var(--accent);
-  font-weight:600;
-}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(26,166,168,.10);
+      border: 1px solid rgba(26,166,168,.18);
+      color: #116e70;
+      font-weight: 900;
+      font-size: 12.5px;
+      width: fit-content;
+    }
+    .badge b{ color: var(--ink); }
 
-/* Footer */
-footer{
-  padding:30px 0;
-  border-top:1px solid var(--line);
-  background:#fafafa;
-  font-size:13px;
-  color:var(--muted);
-}
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-}
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+    }
+    .sub{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15.8px;
+      line-height: 1.65;
+      max-width: 62ch;
+    }
+    .hero-cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
 
-/* Responsive */
-@media(max-width:900px){
-  .intro-grid,
-  .services,
-  .contact-box{
-    grid-template-columns:1fr;
-  }
-}
-</style>
+    /* Info strip */
+    .strip{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .chip{
+      background: rgba(255,255,255,.90);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: var(--shadow2);
+    }
+    .chip strong{ display:block; font-size: 13px; }
+    .chip span{ display:block; margin-top:4px; color: var(--muted); font-size: 12.7px; }
+
+    /* Right panel */
+    .panel{
+      background: rgba(255,255,255,.90);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel:before{
+      content:"";
+      position:absolute; inset:-120px;
+      background:
+        radial-gradient(420px 220px at 12% 10%, rgba(26,166,168,.22), transparent 60%),
+        radial-gradient(420px 220px at 90% 0%, rgba(255,107,154,.18), transparent 60%),
+        radial-gradient(420px 220px at 55% 100%, rgba(139,123,255,.14), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .panel-inner{ position:relative; padding: 14px; }
+
+    .tabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 12px; }
+    .tab{
+      padding: 9px 11px;
+      border-radius: 999px;
+      border:1px solid rgba(208,191,220,.75);
+      background: rgba(255,255,255,.88);
+      font-size: 12.5px;
+      font-weight: 950;
+      color: var(--muted);
+      cursor:pointer;
+      transition:.15s ease;
+      user-select:none;
+    }
+    .tab:hover{ background: rgba(31,36,48,.03); color: var(--ink); }
+    .tab.active{
+      color:#fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--coral), var(--lilac));
+    }
+
+    .panel-card{
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: var(--shadow2);
+    }
+    .panel-card h3{ margin:0 0 6px; font-size: 15px; }
+    .panel-card p{ margin:0; color: var(--muted); font-size: 13.5px; line-height:1.6; }
+    .mini{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .mini .pill{
+      background: rgba(26,166,168,.08);
+      border: 1px solid rgba(26,166,168,.16);
+      border-radius: 14px;
+      padding: 10px 10px;
+      font-size: 12.6px;
+      color: #116e70;
+      font-weight: 900;
+    }
+
+    /* Sections */
+    .section{ padding: 26px 0; }
+    .section-head{
+      display:flex; justify-content:space-between; align-items:flex-end;
+      gap:12px; margin-bottom: 12px;
+    }
+    .section h2{ margin:0; font-size: clamp(20px, 2.1vw, 28px); letter-spacing:-.3px; }
+    .lead{ margin:6px 0 0; color: var(--muted); max-width: 75ch; }
+    .pill-link{
+      font-size: 13px;
+      font-weight: 950;
+      color: #116e70;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(26,166,168,.10);
+      border: 1px solid rgba(26,166,168,.18);
+    }
+    .pill-link:hover{ filter: brightness(.98); }
+
+    /* Services grid */
+    .services{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .service{
+      grid-column: span 4;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: var(--r);
+      padding: 16px;
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+      transition: transform .12s ease;
+    }
+    .service:hover{ transform: translateY(-2px); }
+    .service:after{
+      content:"";
+      position:absolute; inset:-60px;
+      background:
+        radial-gradient(260px 140px at 18% 0%, rgba(26,166,168,.18), transparent 60%),
+        radial-gradient(260px 140px at 100% 10%, rgba(255,107,154,.16), transparent 60%);
+      opacity:.7;
+      pointer-events:none;
+    }
+    .service > *{ position:relative; }
+    .tag{
+      display:inline-flex;
+      font-size: 11.6px;
+      font-weight: 950;
+      color: #7a1d45;
+      background: rgba(255,107,154,.12);
+      border: 1px solid rgba(255,107,154,.18);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    .service h3{ margin:10px 0 6px; font-size: 15.6px; }
+    .service p{ margin:0; color: var(--muted); font-size: 13.4px; line-height:1.6; }
+
+    /* Process band */
+    .band{
+      border-radius: var(--r);
+      background:
+        linear-gradient(135deg, rgba(26,166,168,.10), rgba(255,107,154,.08) 55%, rgba(139,123,255,.08)),
+        rgba(255,255,255,.92);
+      border: 1px solid rgba(234,223,240,.95);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .steps{ display:grid; grid-template-columns: 1fr; gap: 12px; }
+    .step{
+      background: rgba(255,255,255,.90);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: 16px;
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      box-shadow: var(--shadow2);
+    }
+    .n{
+      width:34px; height:34px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      color:#fff;
+      font-weight: 950;
+      background: linear-gradient(135deg, var(--teal), var(--lilac));
+      flex:0 0 auto;
+    }
+    .step h3{ margin:0 0 4px; font-size: 14.9px; }
+    .step p{ margin:0; color: var(--muted); font-size: 13.4px; line-height:1.6; }
+
+    /* FAQ */
+    .faq{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    details{
+      grid-column: span 6;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: var(--r);
+      padding: 12px 14px;
+      box-shadow: var(--shadow2);
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      font-weight: 950;
+      font-size: 13.6px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13.3px;
+      line-height: 1.65;
+    }
+    .chev{
+      width:10px; height:10px; flex:0 0 auto;
+      border-right:2px solid rgba(31,36,48,.55);
+      border-bottom:2px solid rgba(31,36,48,.55);
+      transform: rotate(45deg);
+      transition: transform .18s ease;
+      margin-top: 3px;
+    }
+    details[open] .chev{ transform: rotate(225deg); }
+
+    /* Contact */
+    .contact{
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    .form{
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(234,223,240,.95);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: var(--shadow2);
+    }
+    .fields{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .field{ display:flex; flex-direction:column; gap:6px; }
+    label{ font-size: 12.3px; font-weight: 950; color: var(--muted); }
+    input, select, textarea{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(208,191,220,.9);
+      background: rgba(255,255,255,.98);
+      font-size: 13.4px;
+      outline:none;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(26,166,168,.65);
+      box-shadow: 0 0 0 4px rgba(26,166,168,.12);
+    }
+    textarea{ min-height: 110px; resize: vertical; grid-column: 1/-1; }
+    .note{ color: var(--muted2); font-size: 12.6px; line-height:1.55; margin-top: 10px; }
+    .result{ margin-top: 10px; font-size: 13px; color: var(--muted); display:none; }
+    .actions-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 32px;
+      margin-top: 18px;
+      border-top: 1px solid rgba(234,223,240,.95);
+      background: rgba(255,255,255,.70);
+    }
+    .footer-inner{
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap: 12px;
+      color: var(--muted);
+      font-size: 12.8px;
+    }
+    .footer-inner a{ font-weight: 950; color: var(--ink); }
+    .footer-inner a:hover{ text-decoration: underline; }
+
+    /* Floating IG */
+    .float-ig{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      color:#fff;
+      background: linear-gradient(135deg, var(--coral), var(--lilac));
+      box-shadow: 0 18px 48px rgba(255,107,154,.18);
+      font-weight: 950;
+      font-size: 13px;
+      max-width: calc(100vw - 32px);
+    }
+    .float-ig:hover{ filter: brightness(1.02); }
+    .bubble{
+      width:34px; height:34px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      display:grid; place-items:center;
+      border: 1px solid rgba(255,255,255,.22);
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 980px){
+      .nav{ display:none; }
+      .hero-grid{ grid-template-columns: 1fr; }
+      .strip{ grid-template-columns: 1fr; }
+      .service{ grid-column: span 6; }
+      details{ grid-column: span 12; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .fields{ grid-template-columns: 1fr; }
+      .mini{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px){
+      .service{ grid-column: span 12; }
+      .float-ig span.txt{ display:none; }
+    }
+  </style>
 </head>
+<!-- =========================
+     PARTE 2/2 (BODY + JS)
+========================= -->
 <body>
 
-<header>
-  <div class="container header-inner">
-    <div class="brand">
-      <strong>Silvia Franco</strong>
-      <span>Contadora Pública</span>
-    </div>
-    <div class="header-actions">
-      <a href="#contacto">Enviar consulta</a>
-    </div>
-  </div>
-</header>
-
-<section class="intro">
-  <div class="container intro-grid">
-    <div>
-      <h1>Servicios contables claros, ordenados y profesionales</h1>
-      <p>
-        Acompaño a personas y comercios en la organización contable,
-        el cumplimiento fiscal y la toma de decisiones,
-        con un enfoque simple y sin tecnicismos innecesarios.
-      </p>
-    </div>
-    <div class="intro-note">
-      Atención personalizada · Evaluación previa del caso ·
-      Honorarios según complejidad y urgencia
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2 class="section-title">Servicios</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Impuestos</h3>
-        <p>Presentaciones, regularizaciones y control de obligaciones fiscales.</p>
-      </div>
-      <div class="service">
-        <h3>Balances</h3>
-        <p>Estados contables claros para control interno y terceros.</p>
-      </div>
-      <div class="service">
-        <h3>Consultoría contable</h3>
-        <p>Orientación profesional para tomar decisiones con información real.</p>
-      </div>
-      <div class="service">
-        <h3>Levantamiento de embargos</h3>
-        <p>Gestión y seguimiento de trámites con criterio y respaldo.</p>
-      </div>
-      <div class="service">
-        <h3>Jubilaciones</h3>
-        <p>Asesoramiento y armado del trámite previsional.</p>
-      </div>
-      <div class="service">
-        <h3>Multas e intereses</h3>
-        <p>Análisis del origen y plan de regularización.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2 class="section-title">Forma de trabajo</h2>
-    <div class="timeline">
-      <div class="step">
-        <h4>1. Revisión inicial</h4>
-        <p>Análisis del caso y detección de la situación real.</p>
-      </div>
-      <div class="step">
-        <h4>2. Propuesta concreta</h4>
-        <p>Definición de pasos, documentación y alcance del trabajo.</p>
-      </div>
-      <div class="step">
-        <h4>3. Ejecución y seguimiento</h4>
-        <p>Avance ordenado y comunicación clara durante todo el proceso.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contacto">
-  <div class="container contact-box">
-    <div>
-      <h2>Consulta profesional</h2>
-      <p>
-        Podés escribir por Instagram para una primera evaluación del caso.
-        Luego se define la mejor forma de avanzar.
-      </p>
-    </div>
-    <div>
-      <a href="https://instagram.com/contadora_silviafranco" target="_blank">
-        Enviar mensaje por Instagram
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <div class="mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <strong>Silvia Franco</strong>
+          <small>Contadora · Atención personalizada</small>
+        </div>
       </a>
-    </div>
-  </div>
-</section>
 
-<footer>
-  <div class="container footer-inner">
-    <div>Instagram: @contadora_silviafranco</div>
-    <div>
-      <a href="https://ciborg347.onrender.com" target="_blank">
-        Creado y diseñado por Ciborg 347
-      </a>
+      <nav class="nav" aria-label="Navegación">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#consulta">Consulta</a>
+      </nav>
+
+      <div class="actions">
+        <a class="btn ghost" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn primary" href="#consulta">Enviar consulta</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="container hero-grid">
+      <section>
+        <div class="badge"><b>Orden + claridad</b> en cada paso</div>
+        <h1>Servicios contables pro, con seguimiento y comunicación simple</h1>
+        <p class="sub">
+          Impuestos, balances, consultorías, jubilaciones y levantamiento de embargos.
+          Te explico qué corresponde hacer, qué documentación mínima necesitás y cómo avanzar sin vueltas.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn primary" href="#consulta">Quiero una evaluación</a>
+          <a class="btn" href="#servicios">Ver servicios</a>
+          <a class="btn ghost" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">Enviar DM</a>
+        </div>
+
+        <div class="strip" aria-label="Beneficios">
+          <div class="chip">
+            <strong>Diagnóstico concreto</strong>
+            <span>Primero entendemos el caso y la urgencia.</span>
+          </div>
+          <div class="chip">
+            <strong>Plan por escrito</strong>
+            <span>Pasos, plazos y alcance, sin confusión.</span>
+          </div>
+          <div class="chip">
+            <strong>Seguimiento</strong>
+            <span>Te aviso cada avance para que estés tranquilo/a.</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="Panel de enfoque">
+        <div class="panel-inner">
+          <div class="tabs" role="tablist" aria-label="Tipos de consulta">
+            <button class="tab active" type="button" data-tab="mono">Monotributo</button>
+            <button class="tab" type="button" data-tab="pyme">PyMEs</button>
+            <button class="tab" type="button" data-tab="jub">Jubilación / Embargo</button>
+          </div>
+
+          <div class="panel-card" id="tabCard">
+            <h3 id="tabTitle">Monotributo: al día, sin sorpresas</h3>
+            <p id="tabText">Control de obligaciones, regularización y orden para que no te coman multas e intereses.</p>
+
+            <div class="mini">
+              <div class="pill">Respuesta clara</div>
+              <div class="pill">Documentación mínima</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <section id="servicios" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Servicios</h2>
+          <p class="lead">Elegí tu tema principal y avanzamos con un plan concreto.</p>
+        </div>
+        <a class="pill-link" href="#consulta">Hacer consulta</a>
+      </div>
+
+      <div class="services">
+        <article class="service">
+          <span class="tag">Impuestos</span>
+          <h3>Presentaciones y regularización</h3>
+          <p>Revisión, presentaciones y correcciones para evitar recargos y problemas futuros.</p>
+        </article>
+
+        <article class="service">
+          <span class="tag">Balances</span>
+          <h3>Estados contables claros</h3>
+          <p>Orden documental y contable para gestión interna y respaldo ante terceros.</p>
+        </article>
+
+        <article class="service">
+          <span class="tag">Consultoría</span>
+          <h3>Qué conviene hacer (y qué no)</h3>
+          <p>Te explico opciones reales y te dejo pasos claros para ejecutar con seguridad.</p>
+        </article>
+
+        <article class="service">
+          <span class="tag">Embargos</span>
+          <h3>Levantamiento y seguimiento</h3>
+          <p>Armado de documentación, gestión y seguimiento hasta cerrar el trámite.</p>
+        </article>
+
+        <article class="service">
+          <span class="tag">Jubilaciones</span>
+          <h3>Asesoramiento previsional</h3>
+          <p>Requisitos, documentación y acompañamiento para avanzar sin trabas.</p>
+        </article>
+
+        <article class="service">
+          <span class="tag">Multas</span>
+          <h3>Intereses y regularización</h3>
+          <p>Análisis del origen y plan de acción para ordenar y reducir impacto.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Cómo trabajo</h2>
+          <p class="lead">Método simple: claridad desde el inicio, ejecución ordenada y seguimiento.</p>
+        </div>
+        <a class="pill-link" href="#faq">Ver preguntas</a>
+      </div>
+
+      <div class="band">
+        <div class="steps">
+          <div class="step">
+            <div class="n">1</div>
+            <div>
+              <h3>Revisión inicial</h3>
+              <p>Me contás tu situación y determinamos urgencia y documentación mínima.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="n">2</div>
+            <div>
+              <h3>Plan de acción</h3>
+              <p>Te indico pasos, alcance, plazos y honorarios según complejidad.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="n">3</div>
+            <div>
+              <h3>Ejecución + seguimiento</h3>
+              <p>Avanzamos con orden y te aviso cada hito para que estés tranquilo/a.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Preguntas frecuentes</h2>
+          <p class="lead">Respuestas cortas para evitar idas y vueltas.</p>
+        </div>
+        <a class="pill-link" href="#consulta">Consultar ahora</a>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>¿Qué necesitás para empezar? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Nombre, tipo de caso (impuestos / balance / jubilación / embargo) y una breve descripción. Si hay documentación, la vemos luego.</p>
+        </details>
+
+        <details>
+          <summary>¿Atendés a distancia? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Sí. En este ejemplo, coordinamos por Instagram para ordenar la consulta y avanzar.</p>
+        </details>
+
+        <details>
+          <summary>¿En cuánto tiempo respondés? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Depende del caso y la urgencia. Primero reviso tu mensaje y te confirmo el mejor camino.</p>
+        </details>
+
+        <details>
+          <summary>¿Cómo se definen los honorarios? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Según complejidad, urgencia y alcance. Siempre queda claro qué incluye y qué no.</p>
+        </details>
+
+        <details>
+          <summary>¿Hacés urgencias? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Si el caso lo requiere, se prioriza. Se coordina por mensaje y se define el plan.</p>
+        </details>
+
+        <details>
+          <summary>¿Qué servicios son más comunes? <span class="chev" aria-hidden="true"></span></summary>
+          <p>Impuestos/regularizaciones, balances, consultorías puntuales y acompañamiento en jubilaciones/embargos.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="consulta" class="section">
+    <div class="container contact">
+      <div class="contact-grid">
+        <div>
+          <h2 style="margin:0">Contame tu caso</h2>
+          <p class="lead" style="margin-top:8px">
+            En este ejemplo no usamos WhatsApp. Podés escribir por Instagram o completar el formulario para generar un mensaje listo.
+          </p>
+          <p class="note">
+            No se publican precios en la landing: el costo se define según complejidad y urgencia, con pasos claros.
+          </p>
+          <a class="btn primary" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">Abrir Instagram</a>
+        </div>
+
+        <form class="form" id="leadForm">
+          <div class="fields">
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Tu nombre" required />
+            </div>
+            <div class="field">
+              <label for="perfil">Tipo de caso</label>
+              <select id="perfil" name="perfil" required>
+                <option value="" selected disabled>Elegí una opción</option>
+                <option value="Monotributo / Autónomos">Monotributo / Autónomos</option>
+                <option value="PyMEs / Comercios">PyMEs / Comercios</option>
+                <option value="Jubilaciones / Embargos">Jubilaciones / Embargos</option>
+              </select>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="motivo">Motivo principal</label>
+              <select id="motivo" name="motivo" required>
+                <option value="" selected disabled>Seleccioná el motivo</option>
+                <option>Impuestos (presentaciones / regularización)</option>
+                <option>Balances / Estados contables</option>
+                <option>Consultoría (qué conviene hacer)</option>
+                <option>Levantamiento de embargos</option>
+                <option>Jubilaciones</option>
+                <option>Multas e intereses</option>
+              </select>
+            </div>
+
+            <div class="field" style="grid-column:1/-1">
+              <label for="mensaje">Descripción breve</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Contame en pocas líneas tu situación y si es urgente." required></textarea>
+            </div>
+          </div>
+
+          <div class="actions-row">
+            <button class="btn primary" type="submit">Preparar mensaje</button>
+            <button class="btn" type="button" id="copyMsg">Copiar texto</button>
+            <a class="btn ghost" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">Enviar DM</a>
+          </div>
+
+          <div class="result" id="resultNote" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>Instagram: <a href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener">@contadora_silviafranco</a></div>
+      <div><a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Creado y diseñado por Ciborg 347</a></div>
+    </div>
+  </footer>
+
+  <a class="float-ig" href="https://instagram.com/contadora_silviafranco" target="_blank" rel="noopener" aria-label="Abrir Instagram">
+    <span class="bubble" aria-hidden="true">
+      <svg class="icon" viewBox="0 0 24 24" fill="none">
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="white" stroke-width="2" opacity=".95"/>
+        <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="white" stroke-width="2" opacity=".95"/>
+        <path d="M17.5 6.5h.01" stroke="white" stroke-width="3" stroke-linecap="round" opacity=".95"/>
+      </svg>
+    </span>
+    <span class="txt">Enviar consulta</span>
+  </a>
+
+  <script>
+    (function(){
+      // Tabs panel
+      const tabs = Array.from(document.querySelectorAll('.tab'));
+      const title = document.getElementById('tabTitle');
+      const text  = document.getElementById('tabText');
+
+      const content = {
+        mono: {
+          t: "Monotributo: al día, sin sorpresas",
+          p: "Control de obligaciones, regularización y orden para que no te coman multas e intereses."
+        },
+        pyme: {
+          t: "PyMEs: orden para decidir mejor",
+          p: "Balances, estados contables y revisión de situación para operar con respaldo y claridad."
+        },
+        jub: {
+          t: "Jubilación / Embargo: gestión y seguimiento",
+          p: "Acompañamiento, documentación y seguimiento del trámite para avanzar con tranquilidad."
+        }
+      };
+
+      tabs.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          tabs.forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          const key = btn.dataset.tab;
+          title.textContent = content[key].t;
+          text.textContent  = content[key].p;
+        });
+      });
+
+      // Form -> generate message + copy
+      const form = document.getElementById('leadForm');
+      const note = document.getElementById('resultNote');
+      const copyBtn = document.getElementById('copyMsg');
+      let lastMsg = "";
+
+      function buildMessage(d){
+        return [
+          "Hola Silvia, ¿cómo estás?",
+          "",
+          "Te escribo por una consulta contable.",
+          `• Nombre: ${d.nombre}`,
+          `• Tipo de caso: ${d.perfil}`,
+          `• Motivo: ${d.motivo}`,
+          "",
+          "Descripción:",
+          d.mensaje,
+          "",
+          "¿Me indicás cómo avanzar y qué documentación mínima necesitás?"
+        ].join("\\n");
+      }
+
+      async function copyText(text){
+        try{
+          await navigator.clipboard.writeText(text);
+          return true;
+        }catch(e){
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          return ok;
+        }
+      }
+
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const d = {
+          nombre: (document.getElementById('nombre').value || "").trim(),
+          perfil: document.getElementById('perfil').value,
+          motivo: document.getElementById('motivo').value,
+          mensaje:(document.getElementById('mensaje').value || "").trim(),
+        };
+        lastMsg = buildMessage(d);
+        const ok = await copyText(lastMsg);
+        note.style.display = "block";
+        note.textContent = ok
+          ? "Listo: copié el mensaje. Abrí Instagram y pegalo en el DM."
+          : "Listo: generé el mensaje. Tocá “Copiar texto” para copiarlo.";
+      });
+
+      copyBtn.addEventListener('click', async ()=>{
+        if(!lastMsg){
+          note.style.display = "block";
+          note.textContent = "Primero completá el formulario y tocá “Preparar mensaje”.";
+          return;
+        }
+        const ok = await copyText(lastMsg);
+        note.style.display = "block";
+        note.textContent = ok ? "Copiado." : "No pude copiar automático. Copialo manualmente.";
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const href = a.getAttribute('href');
+          const el = document.querySelector(href);
+          if(!el) return;
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
